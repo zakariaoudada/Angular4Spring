@@ -12,11 +12,14 @@
         </ul>
       </div>
       <div class="m-4">
+      <form #f="ngForm" (ngSubmit)="onAddCommentaire(f.value)">
         <div class="form-group">
-          <label for="comentaire">Commentaire</label>
-          <input type="text" class="form-control"  [(ngModel)]="commentaire.message" #ctrl="ngModel" id="comentaire" placeholder="merci de taper un comentaire">
+          <label for="message">Commentaire</label>
+          <input type="text" required class="form-control"  ngModel id="message" name="message" placeholder="merci de taper un comentaire">
         </div>
-        <button [disabled]="!commentaire.message" class="btn btn-primary" (click)="onAddCommentaire()" > Ajouter </button>
+        <button [disabled]="!f.valid"  class="btn btn-primary" type="submit"> Ajouter </button>
+      </form>
+
       </div>
       <div class="p-2">
         Comentaires : {{commentaire.message}}
