@@ -1,20 +1,32 @@
 <div class="container">
-  <div class="card card-warning">
-    <div class="card-header">
+  <div class="card border-primary">
+    <div class="card-header border-success">
       About
     </div>
     <div class="card-block">
-      <ul>
-        <li>Nom : {{info.nom}}</li>
-        <li>Email : {{info.email}}</li>
-        <li>Tel : {{info.tel}}</li>
-      </ul>
-      <ul>
-        <li *ngFor="let c of comentaires">
-          <span>{{c.date|date:'dd/MM/yyyy HH:mm:ss'}}</span>
-          {{c.message}}
-        </li>
-      </ul>
+      <div class="m-2">
+        <ul class="list-group">
+          <li class="list-group-item" >Nom : {{info.nom}}</li>
+          <li class="list-group-item" >Email : {{info.email}}</li>
+          <li class="list-group-item" >Tel : {{info.tel}}</li>
+        </ul>
+      </div>
+      <div class="m-4">
+        <div class="form-group">
+          <label for="comentaire">Commentaire</label>
+          <input type="text" class="form-control"  [(ngModel)]="commentaire.message" #ctrl="ngModel" id="comentaire" placeholder="merci de taper un comentaire">
+        </div>
+        <button [disabled]="!commentaire.message" class="btn btn-primary" (click)="onAddCommentaire()" > Ajouter </button>
+      </div>
+      <div class="p-2">
+        Comentaires : {{commentaire.message}}
+        <ul class="list-group">
+          <li *ngFor="let c of comentaires" class="list-group-item" >
+            <span class="badge badge-secondary">{{c.date|date:'dd/MM/yyyy HH:mm:ss'}}</span>
+            {{c.message}}
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
